@@ -2,6 +2,7 @@ from src.wine_quality_prediction.pipeline.data_ingestion_pipeline import DataIng
 from src.wine_quality_prediction.pipeline.data_validation_pipeline import DataValidationPipeline
 from src.wine_quality_prediction.pipeline.data_transformation_pipeline import DataTransformationPipeline
 from src.wine_quality_prediction.pipeline.model_trainer_pipeline import ModelTrainingPipeline
+from src.wine_quality_prediction.pipeline.model_evaluation_pipeline import ModelEvaluationPipeline
 from src.wine_quality_prediction import logger
 
 logger.info("Starting the wine quality prediction application...")
@@ -48,6 +49,18 @@ try:
     logger.info(f"{'>>'*20} {STAGE_NAME} Started {'<<'*20}")
     model_trainer_pipeline = ModelTrainingPipeline()
     model_trainer_pipeline.initiate_model_training()
+    logger.info(f"{'>>'*20} {STAGE_NAME} Completed {'<<'*20}")
+except Exception as e:
+    logger.exception(f"Error occurred in {STAGE_NAME}: {e}")
+    raise e
+
+print("*****" * 30)
+
+STAGE_NAME = "Model Evaluation Stage"
+try:
+    logger.info(f"{'>>'*20} {STAGE_NAME} Started {'<<'*20}")
+    model_evaluation_pipeline = ModelEvaluationPipeline()
+    model_evaluation_pipeline.initiate_model_evaluation()
     logger.info(f"{'>>'*20} {STAGE_NAME} Completed {'<<'*20}")
 except Exception as e:
     logger.exception(f"Error occurred in {STAGE_NAME}: {e}")

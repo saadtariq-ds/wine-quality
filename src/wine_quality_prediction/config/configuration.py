@@ -1,8 +1,12 @@
+import os
 from src.wine_quality_prediction.constants import *
 from src.wine_quality_prediction.utils.common import read_yaml, create_directories
 from src.wine_quality_prediction.entity.config_entity import (
     DataIngestionConfig, DataValidationConfig,
-    DataTransformationConfig, ModelTrainerConfig)
+    DataTransformationConfig, ModelTrainerConfig,
+    ModelEvaluationConfig)
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class ConfigurationManager:
@@ -74,3 +78,22 @@ class ConfigurationManager:
         )
 
         return model_trainer_config
+    
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config = self.config_file_path.model_evaluation
+        params = self.params_file_path.elastic_net
+        schema = self.schema_file_path.target_column
+
+        create_directories([config.root_directory])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_directory=config.root_directory,
+            test_data_path=config.test_data_path,
+            model_path=config.model_path,
+            metric_file_name=config.metric_file_name,
+            all_parameters=params,
+            target_column=schema.name,
+            mlflow_uri=os.getenv("MLFLOW_TRACKING_URI")
+        )
+
+        return model_evaluation_config

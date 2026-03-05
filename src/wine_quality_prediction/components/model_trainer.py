@@ -6,8 +6,6 @@ from src.wine_quality_prediction.entity.config_entity import ModelTrainerConfig
 from src.wine_quality_prediction import logger
 
 
-
-
 class ModelTrainer:
     def __init__(self, config: ModelTrainerConfig):
         self.config = config

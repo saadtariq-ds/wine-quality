@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wine Quality Prediction Result</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg,#1c2b4a,#0b1220);
+            height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:white;
+        }
+
+        .result-card{
+            background: rgba(255,255,255,0.1);
+            padding:40px 60px;
+            border-radius:15px;
+            text-align:center;
+            backdrop-filter: blur(10px);
+            box-shadow:0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        h1{
+            margin-bottom:10px;
+        }
+
+        .prediction{
+            font-size:40px;
+            font-weight:bold;
+            color:#63b3ed;
+            margin:20px 0;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:10px 20px;
+            background:#63b3ed;
+            color:#0b1220;
+            text-decoration:none;
+            border-radius:8px;
+            font-weight:bold;
+            margin-top:20px;
+        }
+
+        .btn:hover{
+            opacity:0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Wine Quality Prediction</h1>
+
+    <div class="prediction">
+        {{ prediction }}
+    </div>
+
+    <a href="/" class="btn">Predict Again</a>
+
+</div>
+
+</body>
+</html>
